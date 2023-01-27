@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  wp:
+    image: wordpress:latest
+    ports:
+      - 127.0.0.1:80:80
+    volumes:
+      - ./slbg-plugin/:/var/www/html/wp-content/plugins/slbg-plugin
+      - ./slbg-theme/:/var/www/html/wp-content/themes/slbg-theme
+      - ./uploads/:/var/www/html/wp-content/uploads
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: password
+    depends_on:
+      - db
+    links:
+      - db
+
+
+  db:
+    image: mysql:latest
+    ports:
+      - 127.0.0.1:3306:3306
+    command: [
+        '--default_authentication_plugin=mysql_native_password',
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_unicode_ci'
+    ]
+    volumes:
+      - ./wp-data/dump.sql:/docker-entrypoint-initdb.d/dump.sql
+      - ./db_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_ROOT_PASSWORD: password
+
+volumes:
+  db_data:
