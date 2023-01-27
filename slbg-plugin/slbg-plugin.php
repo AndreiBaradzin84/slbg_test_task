@@ -2,8 +2,8 @@
 /**
  * Plugin Name: SLBG Plugin
  * Description: Test task for Solberg interview
- * Plugin URI:  https://docs.google.com/document/d/16abYE1pxX0sX12E3-x9W2_Ewfl-JUkguXVW_m7FSTkQ/edit
- * Author URI:
+ * Plugin URI:  https://github.com/AndreiBaradzin84/slbg_test_task
+ * Author URI: 	https://github.com/AndreiBaradzin84/
  * Author:      Andrei Baradzin
  *
  * Requires PHP: 7.4
